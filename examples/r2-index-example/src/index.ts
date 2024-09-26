@@ -13,7 +13,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import R2Index, { D1Provider } from 'r2-index';
+import R2Index, { D1Provider, type R2IndexNotificationPayload } from 'r2-index';
 
 export default {
 	async fetch(request: Request, env: Env): Promise<Response> {
@@ -40,12 +40,12 @@ export default {
 			try {
 				console.log('Processing message', message.body);
 
-				await r2Index.handleNotification(message.body as any);
+				await r2Index.handleNotification(message.body);
 				message.ack();
 			} catch(e) {
 				console.error(e);
 				message.retry();
-		}
+			}
 		}
 	},
-} satisfies ExportedHandler<Env, Error>;
+} satisfies ExportedHandler<Env, R2IndexNotificationPayload>;
