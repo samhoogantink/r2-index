@@ -125,7 +125,6 @@ export {
     R2IndexInvalidActionError,
     R2IndexInvalidBucketNameError,
     R2IndexObjectNotFoundError,
-    R2IndexNotificationPayload,
 
     // Models
     type R2IndexProvider,
@@ -133,5 +132,6 @@ export {
     type R2IndexSavePutObjectPayload,
     type R2IndexSaveCopyObjectPayload,
     type R2IndexDeleteObjectPayload,
-    type R2IndexDatabaseObject
+    type R2IndexDatabaseObject,
+    type R2IndexNotificationPayload
 }
