@@ -18,8 +18,7 @@ import type {
 
 export default class R2Index {
 
-    private readonly config: Omit<R2IndexConfig, 'provider'>;
-    private readonly provider: R2IndexProvider;
+    private readonly config: R2IndexConfig;
 
     public constructor(config: R2IndexConfigInit) {
         this.config = {
@@ -29,8 +28,6 @@ export default class R2Index {
             shouldThrow: true,
             ...config
         };
-
-        this.provider = config.provider;
     }
 
     /**
@@ -39,7 +36,7 @@ export default class R2Index {
      * @since 1.0.0
      */
     public getProvider() {
-        return this.provider;
+        return this.config.provider;
     }
 
     /**
@@ -82,7 +79,7 @@ export default class R2Index {
         switch(payload.action) {
             case 'PutObject':
             case 'CompleteMultipartUpload':
-                await this.provider.savePutObject({
+                await this.config.provider.savePutObject({
                     ...defaultPayload,
                     object: {
                         objectKey: payload.object.key,
@@ -92,7 +89,7 @@ export default class R2Index {
                 });
                 break;
             case 'CopyObject':
-                await this.provider.saveCopyObject({
+                await this.config.provider.saveCopyObject({
                     ...defaultPayload,
                     object: {
                         objectKey: payload.object.key,
@@ -106,7 +103,8 @@ export default class R2Index {
                 });
                 break;
             case 'DeleteObject':
-                await this.provider.saveDeleteObject({
+            case 'LifecycleDeletion':
+                await this.config.provider.saveDeleteObject({
                     ...defaultPayload,
                     object: {
                         objectKey: payload.object.key,
@@ -127,6 +125,7 @@ export {
     R2IndexInvalidActionError,
     R2IndexInvalidBucketNameError,
     R2IndexObjectNotFoundError,
+    R2IndexNotificationPayload,
 
     // Models
     type R2IndexProvider,

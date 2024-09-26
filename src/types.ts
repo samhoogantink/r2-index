@@ -52,7 +52,7 @@ export type R2IndexConfigInit = {
     [key in keyof R2IndexDefaultConfig]?: R2IndexDefaultConfig[key];
 } & R2IndexPluginConfig;
 
-export type R2IndexNotificationActions = 'PutObject' | 'CopyObject' | 'CompleteMultipartUpload' | 'DeleteObject';
+export type R2IndexNotificationActions = 'PutObject' | 'CopyObject' | 'CompleteMultipartUpload' | 'DeleteObject' | 'LifecycleDeletion';
 
 /**
  * Payload for incoming notifications

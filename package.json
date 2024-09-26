@@ -1,7 +1,7 @@
 {
   "name": "r2-index",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "R2Index is a package that makes handling Cloudflare R2 event notifications a bit easier.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
