@@ -1,0 +1,57 @@
+{
+  "name": "r2-index",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup ./src/index.ts --format esm,cjs --dts",
+    "test": "vitest run",
+    "deploy": "pnpm run build && pnpm publish"
+  },
+  "keywords": [
+    "cloudflare",
+    "r2",
+    "workers",
+    "queues",
+    "buckets",
+    "notifications",
+    "events",
+    "event"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samhoogantink/r2-index.git"
+  },
+  "homepage": "https://github.com/samhoogantink/r2-index#readme",
+  "author": "@samhoogantink",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240925.0",
+    "@types/node": "^22.7.2",
+    "miniflare": "^3.20240925.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.2",
+    "vitest": "^2.1.1"
+  }
+}
