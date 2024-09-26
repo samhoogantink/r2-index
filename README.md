@@ -21,10 +21,10 @@ R2Index works in all the handlers that Workers supports (such as fetch, queue, .
 Note: For queue batches, we currently do not support batch inserts. But we are working on this.
 
 ```typescript
-import R2Index, { D1Provider } from 'r2-index';
+import R2Index, { D1Provider, type R2IndexNotificationPayload } from 'r2-index';
 
 export default {
-    async queue(batch: MessageBatch<Message>, env: Env, ctx: ExecutionContext): Promise<void> {
+    async queue(batch: MessageBatch<R2IndexNotificationPayload>, env: Env, ctx: ExecutionContext): Promise<void> {
         const r2Index = new R2Index({
             accountIds: ['3f4b7e3dcab231cbfdaa90a6a28bd548'],
             bucketNames: ['my-bucket'],
