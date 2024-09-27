@@ -48,14 +48,8 @@ export default class D1Provider implements R2IndexProvider {
                 CREATE INDEX IF NOT EXISTS objects_object_name ON objects(object_name);
             `),
             this.db.prepare(`
-                CREATE INDEX IF NOT EXISTS objects_event_date ON objects(event_date);
+                CREATE INDEX IF NOT EXISTS objects_search ON objects(account_id, bucket_name, object_name);
             `),
-            this.db.prepare(`
-                CREATE INDEX IF NOT EXISTS objects_original_bucket_name ON objects(original_bucket_name);
-            `),
-            this.db.prepare(`
-                CREATE INDEX IF NOT EXISTS objects_original_object_name ON objects(original_object_name);
-            `)
         ]);
     }
 

@@ -1,11 +1,11 @@
 type Nullable<T> = T | null;
 
-type R2IndexPluginConfig = {
+type R2IndexPluginConfig<P extends R2IndexProvider> = {
     /**
      * The provider to use
      * @since 1.0.0
      */
-    provider: R2IndexProvider;
+    provider: P;
 }
 
 /**
@@ -42,15 +42,19 @@ type R2IndexDefaultConfig = {
  * The default config
  * @since 1.0.0
  */
-export type R2IndexConfig = R2IndexDefaultConfig & R2IndexPluginConfig;
+export type R2IndexConfig<
+    P extends R2IndexProvider
+> = R2IndexDefaultConfig & R2IndexPluginConfig<P>;
 
 /**
  * The default config, but made fields optional
  * @since 1.0.0
  */
-export type R2IndexConfigInit = {
+export type R2IndexConfigInit<
+    P extends R2IndexProvider
+> = {
     [key in keyof R2IndexDefaultConfig]?: R2IndexDefaultConfig[key];
-} & R2IndexPluginConfig;
+} & R2IndexPluginConfig<P>;
 
 export type R2IndexNotificationActions = 'PutObject' | 'CopyObject' | 'CompleteMultipartUpload' | 'DeleteObject' | 'LifecycleDeletion';
 
